@@ -1,13 +1,13 @@
 ﻿using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerMovementController : MonoBehaviour
 {
-    #region Methods
+    #region Fields
     [SerializeField] float movementSpeed;
     [SerializeField] float rotationalSpeed;
     #endregion
 
-    #region
+    #region Methods
     void Update()
     {
         Move(Input.GetAxis("Vertical"));
