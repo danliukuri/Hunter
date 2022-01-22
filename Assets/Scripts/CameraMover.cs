@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CameraMovementController : MonoBehaviour
+public class CameraMover : MonoBehaviour
 {
     #region Fields
     [SerializeField] Transform targetTransform;

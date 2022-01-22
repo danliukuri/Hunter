@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BulletMovementController : MonoBehaviour
+public class BulletMover : MonoBehaviour
 {
     #region Fields
     [SerializeField] float speed;

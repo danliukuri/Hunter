@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class GunShootingController : MonoBehaviour
+public class GunShooter : MonoBehaviour
 {
     #region Fields
     [SerializeField] ObjectsPool bulletsPool;
