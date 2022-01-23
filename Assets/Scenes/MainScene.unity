@@ -484,17 +484,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameObjectPrefab: {fileID: 235247659105936717, guid: 8f1031cc7404eb648af0fc9dc0885088, type: 3}
   objectsParent: {fileID: 2264826082485406349}
-  objects:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  initialNumberOfObjects: 10
 --- !u!4 &2264826082485406349
 Transform:
   m_ObjectHideFlags: 0

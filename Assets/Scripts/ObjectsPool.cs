@@ -11,26 +11,56 @@ public class ObjectsPool : MonoBehaviour
 	[SerializeField] GameObject gameObjectPrefab;
 	[SerializeField] Transform objectsParent;
 
-	[SerializeField] List<GameObject> objects = new List<GameObject>();
+	[SerializeField] int initialNumberOfObjects;
+
+	List<GameObject> objects;
 	#endregion
 
 	#region Methods
+	void Awake()
+	{
+		Initialize();
+	}
+	void Initialize()
+	{
+		objects = new List<GameObject>(initialNumberOfObjects);
+		for (int i = 0; i < initialNumberOfObjects; i++)
+			CreateInactiveGameObject();
+	}
+
 	/// <summary>
-	/// Finds a free object or creates a new one
+	/// Creates a new free inactive object
 	/// </summary>
-	/// <returns> Found or newly created object </returns>
+	/// <returns> Newly created inactive object </returns>
+	public GameObject CreateInactiveGameObject()
+	{
+		GameObject gameObject = Instantiate(gameObjectPrefab, objectsParent);
+		gameObject.SetActive(false);
+		objects.Add(gameObject);
+		return gameObject;
+	}
+	void OnValidate()
+	{
+		if (objectsParent == null)
+			objectsParent = transform;
+	}
+
+	/// <summary>
+	/// Finds an inactive object or creates a new one
+	/// </summary>
+	/// <returns> Found or newly created inactive object </returns>
 	public GameObject GetFreeObject()
 	{
-		GameObject gameObject = TryToGetObject();
+		GameObject gameObject = TryToGetFreeObject();
 		if (gameObject == null)
-			gameObject = CreateNewObject();
+			gameObject = CreateInactiveGameObject();
 		return gameObject;
 	}
 	/// <summary>
-	/// Finds a free object
+	/// Finds an inactive object
 	/// </summary>
-	/// <returns> Found object </returns>
-	GameObject TryToGetObject()
+	/// <returns> Found inactive object </returns>
+	GameObject TryToGetFreeObject()
     {
 		GameObject gameObject = null;
 		for (int i = 0; i < objects?.Count; i++)
@@ -40,40 +70,6 @@ public class ObjectsPool : MonoBehaviour
 				break;
 			}
 		return gameObject;
-	}
-	/// <summary>
-	/// Creates a new free object
-	/// </summary>
-	/// <returns> Newly created object </returns>
-	GameObject CreateNewObject()
-    {
-		GameObject gameObject = Instantiate(gameObjectPrefab, objectsParent);
-		objects.Add(gameObject);
-		return gameObject;
-	}
-
-	/// <summary>
-	/// Fills empty cells in the objects list with new game object prefabs
-	/// </summary>
-	[ContextMenu("Fill empty cells")]
-	void FillEmptyCells()
-	{
-		for (int i = 0; i < objects.Count; i++)
-			if (objects[i] == null)
-			{
-				objects[i] = Instantiate(gameObjectPrefab, objectsParent);
-				objects[i].SetActive(false);
-			}
-	}
-
-    void OnValidate()
-    {
-		if (objectsParent == null)
-			objectsParent = transform;
-    }
-    void Awake()
-	{
-		FillEmptyCells();
 	}
 	#endregion
 }
