@@ -1,32 +1,37 @@
-﻿using UnityEngine;
+﻿using Infrastructure.InputServices;
+using UnityEngine;
+using Zenject;
 
 public class PlayerMover : MonoBehaviour
 {
     #region Fields
     [SerializeField] float movementSpeed;
     [SerializeField] float rotationalSpeed;
+
+    IMovementInputService movementInputService;
     #endregion
 
     #region Methods
-    void Update()
+    [Inject]
+    public void Construct(IMovementInputService movementInputService)
     {
-        Move(Input.GetAxis("Vertical"));
-        Rotate(Input.GetAxis("Horizontal"));
+        this.movementInputService = movementInputService;
+        movementInputService.HorizontalAxisValueChanging += Rotate;
+        movementInputService.VerticalAxisValueChanging += Move;
+    }
+    void OnDestroy()
+    {
+        movementInputService.HorizontalAxisValueChanging -= Rotate;
+        movementInputService.VerticalAxisValueChanging -= Move;
     }
 
     void Move(float verticalAxisvalue)
     {
-        if (verticalAxisvalue != 0)
-        {
-            transform.Translate(0f, verticalAxisvalue * movementSpeed * Time.deltaTime, 0f);
-        }
+        transform.Translate(0f, verticalAxisvalue * movementSpeed * Time.deltaTime, 0f);
     }
     void Rotate(float horizontalAxisvalue)
     { 
-        if (horizontalAxisvalue != 0)
-        {
-            transform.Rotate(0f, 0f, -horizontalAxisvalue * rotationalSpeed * Mathf.Rad2Deg * Time.deltaTime);
-        }
+        transform.Rotate(0f, 0f, -horizontalAxisvalue * rotationalSpeed * Mathf.Rad2Deg * Time.deltaTime);
     }
     #endregion
 }
