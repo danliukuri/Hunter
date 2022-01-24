@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Infrastructure.InputServices
+namespace Infrastructure.InputServices.StandalonePlatform
 {
     public class StandaloneMovementInput : MonoBehaviour, IMovementInputService
     {
