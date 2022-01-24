@@ -1,22 +1,36 @@
+using Infrastructure.InputServices;
 using UnityEngine;
+using Zenject;
 
 public class GunShooter : MonoBehaviour
 {
     #region Fields
     [SerializeField] ObjectsPool bulletsPool;
     [SerializeField] int numberOfBullets;
+
+    IFireButtonInputService fireButtonInputService;
     #endregion
 
     #region Methods
-    void Update()
+    [Inject]
+    public void Construct(IFireButtonInputService fireButtonInputService)
     {
-        if(Input.GetButtonDown("Fire1") && numberOfBullets > 0)
+        this.fireButtonInputService = fireButtonInputService;
+        fireButtonInputService.FireButtonPressed += TryToFire;
+    }
+    void OnDestroy()
+    {
+        fireButtonInputService.FireButtonPressed -= TryToFire;
+    }
+
+    void TryToFire()
+    {
+        if (numberOfBullets > 0)
         {
             numberOfBullets--;
             Fire();
         }
     }
-
     void Fire()
     {
         GameObject gameObject = bulletsPool.GetFreeObject();
