@@ -74,3 +74,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   standaloneMovementInputPrefab: {fileID: 3698567792810058387, guid: d35adb1953a519b4faa6309597085f9c, type: 3}
+  standaloneButtonsInputPrefab: {fileID: 8321490519740941345, guid: 87e2d3345a35bd84eac429bccfaac045, type: 3}
