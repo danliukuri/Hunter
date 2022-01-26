@@ -399,6 +399,7 @@ GameObject:
   m_Component:
   - component: {fileID: 900449454}
   - component: {fileID: 900449453}
+  - component: {fileID: 900449455}
   m_Layer: 0
   m_Name: SceneContext
   m_TagString: Untagged
@@ -419,7 +420,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _scriptableObjectInstallers: []
-  _monoInstallers: []
+  _monoInstallers:
+  - {fileID: 900449455}
   _installerPrefabs: []
   _autoRun: 1
   OnPreInstall:
@@ -451,6 +453,27 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &900449455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 900449452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 889fd3aa22e5a7849ba8cbade129b243, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerStartSpawnPoint: {fileID: 1286954888}
+  playerPrefab: {fileID: 4006746527388027019, guid: 9f11009cdd4b3cc448d77d91e327e4bd, type: 3}
+  gunPrefab: {fileID: 2138966021827151571, guid: a786965743dfa9c44b886b667a6bba01, type: 3}
+  bulletsPool: {fileID: 2264826082485406348}
+--- !u!4 &1286954888 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6426757488232917364, guid: b1e6d914c9f3f9045aaa6ca10d207e6d, type: 3}
+  m_PrefabInstance: {fileID: 582161114}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &122370153701369250
 GameObject:
   m_ObjectHideFlags: 0

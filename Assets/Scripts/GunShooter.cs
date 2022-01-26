@@ -5,7 +5,7 @@ using Zenject;
 public class GunShooter : MonoBehaviour
 {
     #region Fields
-    [SerializeField] ObjectsPool bulletsPool;
+    ObjectsPool bulletsPool;
     [SerializeField] int numberOfBullets;
 
     IFireButtonInputService fireButtonInputService;
@@ -13,8 +13,9 @@ public class GunShooter : MonoBehaviour
 
     #region Methods
     [Inject]
-    public void Construct(IFireButtonInputService fireButtonInputService)
+    public void Construct(IFireButtonInputService fireButtonInputService, ObjectsPool bulletsPool)
     {
+        this.bulletsPool = bulletsPool;
         this.fireButtonInputService = fireButtonInputService;
         fireButtonInputService.FireButtonPressed += TryToFire;
     }
