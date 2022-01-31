@@ -3,9 +3,9 @@ using Infrastructure.InputServices.StandalonePlatform;
 using UnityEngine;
 using Zenject;
 
-namespace Infrastructure
+namespace Infrastructure.Installers.BootstrapInstallers
 {
-    public class BootstrapInstaller : MonoInstaller
+    public class InputServicesInstaller : MonoInstaller
     {
         #region Fields
         [SerializeField] StandaloneButtonsInput standaloneButtonsInputPrefab;

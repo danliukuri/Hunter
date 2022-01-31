@@ -1,7 +1,11 @@
-﻿using UnityEngine;
+﻿using Entities.Factories;
+using Entities.Movers;
+using Entities.Weapons;
+using Entities.Weapons.Ammunition;
+using UnityEngine;
 using Zenject;
 
-namespace Infrastructure
+namespace Infrastructure.Installers.SceneInstallers
 {
     public class GunInstaller : MonoInstaller, IInitializable
     {

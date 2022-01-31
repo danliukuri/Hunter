@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Entities.Movers;
 using UnityEngine;
 using Zenject;
 
-namespace Infrastructure
+namespace Infrastructure.Installers.SceneInstallers
 {
     public class PlayerInstaller : MonoInstaller
     {

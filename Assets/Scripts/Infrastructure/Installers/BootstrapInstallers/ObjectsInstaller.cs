@@ -1,7 +1,8 @@
-﻿using UnityEngine;
+﻿using Entities.Factories;
+using UnityEngine;
 using Zenject;
 
-namespace Infrastructure
+namespace Infrastructure.Installers.BootstrapInstallers
 {
     public class ObjectsInstaller : MonoInstaller
     {
