@@ -1,5 +1,5 @@
 using Infrastructure.InputServices;
-using Infrastructure.InputServices.StandalonePlatform;
+using System;
 using UnityEngine;
 using Zenject;
 
@@ -8,33 +8,27 @@ namespace Infrastructure.Installers.BootstrapInstallers
     public class InputServicesInstaller : MonoInstaller
     {
         #region Fields
-        [SerializeField] StandaloneButtonsInput standaloneButtonsInputPrefab;
-        [SerializeField] StandaloneMovementInput standaloneMovementInputPrefab;
+        [SerializeField] GameObject inputServicesPrefab;
         #endregion
 
         #region Methods
         public override void InstallBindings()
         {
-            BindButtonsInputService();
-            BindMovementInputService();
+            BindInputServices(GetInputServiceTypes());
+        }
+        void BindInputServices(Type[] inputServiceTypes)
+        {
+            Container
+              .Bind(inputServiceTypes)
+              .FromComponentInNewPrefab(inputServicesPrefab)
+              .AsSingle();
         }
 
-        void BindButtonsInputService()
+        Type[] GetInputServiceTypes() => new Type[]
         {
-            Container
-              .Bind<IFireButtonInputService>()
-              .FromComponentInNewPrefab(standaloneButtonsInputPrefab)
-              .UnderTransform(transform)
-              .AsSingle();
-        }
-        void BindMovementInputService()
-        {
-            Container
-              .Bind<IMovementInputService>()
-              .FromComponentInNewPrefab(standaloneMovementInputPrefab)
-              .UnderTransform(transform)
-              .AsSingle();
-        }
+            typeof(IFireButtonInputService),
+            typeof(IMovementInputService)
+        };
         #endregion
     }
 }
