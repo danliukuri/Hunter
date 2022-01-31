@@ -14,21 +14,16 @@ namespace Infrastructure.Installers.SceneInstallers
         #region Methods
         public override void InstallBindings()
         {
-            PlayerMover player = InstantiatePlayer();
-            BindPlayer(player);
+            BindPlayer();
         }
 
-        PlayerMover InstantiatePlayer()
-        {
-            return Container
-                .InstantiatePrefabForComponent<PlayerMover>(playerPrefab, playerStartSpawnPoint);
-        }
-        void BindPlayer(PlayerMover player)
+        void BindPlayer()
         {
             Container
-               .Bind<PlayerMover>()
-               .FromInstance(player)
-               .AsSingle();
+                .Bind<PlayerMover>()
+                .FromComponentInNewPrefab(playerPrefab)
+                .UnderTransform(playerStartSpawnPoint)
+                .AsSingle();
         }
         #endregion
     }
