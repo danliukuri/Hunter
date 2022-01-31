@@ -13,16 +13,14 @@ namespace Infrastructure.Installers.SceneInstallers
         [SerializeField] GameObject gunPrefab;
         [SerializeField] GameObject ammunitionPrefab;
 
-        PlayerMover player;
         BulletFactory bulletFactory;
         #endregion
 
         #region Methods
         [Inject]
-        public void Construct(BulletFactory bulletFactory, PlayerMover player)
+        public void Construct(BulletFactory bulletFactory)
         {
             this.bulletFactory = bulletFactory;
-            this.player = player;
         }
 
         public override void InstallBindings()
@@ -31,18 +29,18 @@ namespace Infrastructure.Installers.SceneInstallers
         }
         public void Initialize()
         {
-            GunShooter gun = InstantiateGunForPlayer(player.transform);
-            InstantiateAmmunitionForPlayerGun(gun);
+            PlayerMover player = Container.Resolve<PlayerMover>();
+            InstantiateGunForPlayer(player.transform);
         }
 
-        GunShooter InstantiateGunForPlayer(Transform player)
+        void InstantiateGunForPlayer(Transform player)
         {
-            return Container.InstantiatePrefabForComponent<GunShooter>(gunPrefab, player);
-        }
-        void InstantiateAmmunitionForPlayerGun(GunShooter gun)
-        {
+            GunShooter gun = Container
+                .InstantiatePrefabForComponent<GunShooter>(gunPrefab, player);
+
             Ammunition ammunition = Container
                 .InstantiatePrefabForComponent<Ammunition>(ammunitionPrefab, gun.transform);
+
             ammunition.SetBulletFactory(bulletFactory);
             gun.SetAmmunition(ammunition);
         }
