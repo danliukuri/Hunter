@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using Zenject;
 
 namespace Infrastructure
@@ -8,22 +9,16 @@ namespace Infrastructure
         #region Fields
         [SerializeField] Transform playerStartSpawnPoint;
         [SerializeField] GameObject playerPrefab;
-
-        [SerializeField] GameObject gunPrefab;
-        [SerializeField] ObjectsPool bulletsPool;
         #endregion
 
         #region Methods
         public override void InstallBindings()
         {
-            PlayerMover player = InstantiateAndBindPlayer();
+            PlayerMover player = InstantiatePlayer();
             BindPlayer(player);
-
-            BindObjectsPool();
-            InstantiateGunForPlayer(player.transform);
         }
 
-        PlayerMover InstantiateAndBindPlayer()
+        PlayerMover InstantiatePlayer()
         {
             return Container
                 .InstantiatePrefabForComponent<PlayerMover>(playerPrefab, playerStartSpawnPoint);
@@ -34,17 +29,6 @@ namespace Infrastructure
                .Bind<PlayerMover>()
                .FromInstance(player)
                .AsSingle();
-        }
-        void BindObjectsPool()
-        {
-            Container
-                .Bind<ObjectsPool>()
-                .FromInstance(bulletsPool)
-                .AsSingle();
-        }
-        void InstantiateGunForPlayer(Transform player)
-        {
-            Container.InstantiatePrefabForComponent<GunShooter>(gunPrefab, player);
         }
         #endregion
     }
