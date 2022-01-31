@@ -13,19 +13,15 @@ namespace Infrastructure.Installers.BootstrapInstallers
         #region Methods
         public override void InstallBindings()
         {
-            GameObject bullets = InstantiateBullets();
-            BulletFactory bulletFactory = bullets.GetComponent<BulletFactory>();
-            BindBulletFactory(bulletFactory);
+            BindBulletFactory();
         }
-        GameObject InstantiateBullets()
-        {
-            return Container.InstantiatePrefab(bullets);
-        }
-        void BindBulletFactory(BulletFactory bulletFactory)
+
+        void BindBulletFactory()
         {
             Container
                 .Bind<BulletFactory>()
-                .FromInstance(bulletFactory)
+                .FromComponentInNewPrefab(bullets)
+                .UnderTransform(transform)
                 .AsSingle();
         }
         #endregion
