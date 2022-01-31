@@ -5,20 +5,22 @@ using Zenject;
 public class GunShooter : MonoBehaviour
 {
     #region Fields
-    ObjectsPool bulletsPool;
-    [SerializeField] int numberOfBullets;
-
+    IAmmunition ammunition;
     IFireButtonInputService fireButtonInputService;
     #endregion
 
     #region Methods
     [Inject]
-    public void Construct(IFireButtonInputService fireButtonInputService, ObjectsPool bulletsPool)
+    public void Construct(IFireButtonInputService fireButtonInputService)
     {
-        this.bulletsPool = bulletsPool;
         this.fireButtonInputService = fireButtonInputService;
         fireButtonInputService.FireButtonPressed += TryToFire;
     }
+    public void SetAmmunition(IAmmunition ammunition)
+    {
+        this.ammunition = ammunition;
+    }
+
     void OnDestroy()
     {
         fireButtonInputService.FireButtonPressed -= TryToFire;
@@ -26,26 +28,12 @@ public class GunShooter : MonoBehaviour
 
     void TryToFire()
     {
-        if (numberOfBullets > 0)
-        {
-            numberOfBullets--;
-            Fire();
-        }
+        if (ammunition.HaveAnyBullets())
+            Fire(ammunition.TryToGetBullet());
     }
-    void Fire()
+    void Fire(GameObject bullet)
     {
-        GameObject gameObject = bulletsPool.GetFreeObject();
-
-        Transform gameObjectTransform = gameObject.transform;
-        gameObjectTransform.SetParent(transform.parent);
-        gameObjectTransform.rotation = transform.rotation;
-        gameObjectTransform.localPosition = new Vector3(
-            transform.localPosition.x,
-            transform.localPosition.y + transform.localScale.y / 2f + gameObjectTransform.localScale.y / 2f,
-            transform.localPosition.z);
-        gameObjectTransform.SetParent(bulletsPool.ObjectsParent);
-
-        gameObject.SetActive(true);
+        bullet.SetActive(true);
     }
     #endregion
 }
