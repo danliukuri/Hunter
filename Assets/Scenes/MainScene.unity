@@ -310,7 +310,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6426757488232917364, guid: b1e6d914c9f3f9045aaa6ca10d207e6d, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6426757488232917364, guid: b1e6d914c9f3f9045aaa6ca10d207e6d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -358,37 +358,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b1e6d914c9f3f9045aaa6ca10d207e6d, type: 3}
---- !u!1 &648886216
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 648886217}
-  m_Layer: 0
-  m_Name: ObjectsPools
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &648886217
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 648886216}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 2264826082485406349}
-  m_Father: {fileID: 0}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &900449452
 GameObject:
   m_ObjectHideFlags: 0
@@ -400,6 +369,7 @@ GameObject:
   - component: {fileID: 900449454}
   - component: {fileID: 900449453}
   - component: {fileID: 900449455}
+  - component: {fileID: 900449456}
   m_Layer: 0
   m_Name: SceneContext
   m_TagString: Untagged
@@ -422,6 +392,7 @@ MonoBehaviour:
   _scriptableObjectInstallers: []
   _monoInstallers:
   - {fileID: 900449455}
+  - {fileID: 900449456}
   _installerPrefabs: []
   _autoRun: 1
   OnPreInstall:
@@ -467,8 +438,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerStartSpawnPoint: {fileID: 1286954888}
   playerPrefab: {fileID: 4006746527388027019, guid: 9f11009cdd4b3cc448d77d91e327e4bd, type: 3}
-  gunPrefab: {fileID: 2138966021827151571, guid: a786965743dfa9c44b886b667a6bba01, type: 3}
-  bulletsPool: {fileID: 2264826082485406348}
+--- !u!114 &900449456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 900449452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f73b31a782971e54da2680ae35d41188, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gunPrefab: {fileID: 6298499836430427727, guid: a786965743dfa9c44b886b667a6bba01, type: 3}
+  ammunitionPrefab: {fileID: 9185502745069238123, guid: 83d6fbad9cfd1754b9b130a4a0a350c6, type: 3}
 --- !u!4 &1286954888 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6426757488232917364, guid: b1e6d914c9f3f9045aaa6ca10d207e6d, type: 3}
@@ -531,7 +514,7 @@ Transform:
   m_Children:
   - {fileID: 133259725}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &122370153701369254
 MonoBehaviour:
@@ -545,49 +528,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a19a2b868f4c5848b5ebe5331ee5394, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2264826082485406348
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2264826082485406350}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 42a57c7963eb8d340a4a8031d120340f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameObjectPrefab: {fileID: 235247659105936717, guid: 8f1031cc7404eb648af0fc9dc0885088, type: 3}
-  objectsParent: {fileID: 2264826082485406349}
-  initialNumberOfObjects: 10
---- !u!4 &2264826082485406349
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2264826082485406350}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 648886217}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2264826082485406350
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2264826082485406349}
-  - component: {fileID: 2264826082485406348}
-  m_Layer: 0
-  m_Name: BulletsPool
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
