@@ -45,3 +45,6 @@ TagManager:
   - name: Player
     uniqueID: 1998153903
     locked: 0
+  - name: Rabbit
+    uniqueID: 3974127203
+    locked: 0
