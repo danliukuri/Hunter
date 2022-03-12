@@ -43,6 +43,8 @@ GameObject:
   - component: {fileID: 8681916314298928555}
   - component: {fileID: 8681916314298928551}
   - component: {fileID: 8681916314298928550}
+  - component: {fileID: -3092961912425240433}
+  - component: {fileID: -4389929968039793956}
   m_Layer: 0
   m_Name: Rabbit
   m_TagString: Player
@@ -102,6 +104,37 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &-3092961912425240433
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8681916314298928554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6569947ea3f91a84f8d7b1e67a9dbbe3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mass: 1
+  velocityLimit: 3
+  steeringForceLimit: 5
+--- !u!114 &-4389929968039793956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8681916314298928554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b1412f6a36e7114989a198c7018a867, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weight: 1
+  circleDistance: 1
+  circleRadius: 1
+  angleChangeStep: 5
 --- !u!1 &8681916314437739288
 GameObject:
   m_ObjectHideFlags: 0
