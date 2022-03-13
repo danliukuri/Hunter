@@ -18,10 +18,13 @@ namespace Entities.Movers
         public void Construct(IMovementInputService movementInputService)
         {
             this.movementInputService = movementInputService;
+        }
+        private void OnEnable()
+        {
             movementInputService.HorizontalAxisValueChanging += Rotate;
             movementInputService.VerticalAxisValueChanging += Move;
         }
-        void OnDestroy()
+        private void OnDisable()
         {
             movementInputService.HorizontalAxisValueChanging -= Rotate;
             movementInputService.VerticalAxisValueChanging -= Move;
