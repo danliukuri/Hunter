@@ -1,5 +1,4 @@
 using Entities.SteeringBehaviors;
-using System.Linq;
 using UnityEngine;
 
 namespace Entities.Movers
@@ -21,7 +20,6 @@ namespace Entities.Movers
         [SerializeField, Range(1, 50)] float steeringForceLimit = 5f;
 
         DesiredVelocityProvider[] providers;
-        float providersWeightSum;
 
         Vector3 velocity;
         Vector3 acceleration;
@@ -31,7 +29,6 @@ namespace Entities.Movers
         void Awake()
         {
             providers = GetComponents<DesiredVelocityProvider>();
-            providersWeightSum = providers.Sum(provider => provider.Weight);
         }
         void Update()
         {
@@ -51,9 +48,16 @@ namespace Entities.Movers
             Vector3 steering = Vector3.zero;
             foreach (DesiredVelocityProvider provider in providers)
             {
-                Vector3 desiredVelocity = provider.GetDesiredVelocity() * provider.Weight / providersWeightSum;
+                Vector3 desiredVelocity = provider.GetDesiredVelocity();
                 steering += desiredVelocity - velocity;
+                //Debug.DrawRay(transform.position, desiredVelocity, Color.blue);
             }
+
+            //Debug.DrawRay(transform.position, steering, Color.magenta);
+            //Debug.DrawRay(transform.position, velocity, Color.red);
+            //Debug.Log(velocity.magnitude);
+            //Debug.DrawRay(transform.position, transform.forward * -0.5f, Color.green, 1000f); // Path
+
             return Vector3.ClampMagnitude(steering - velocity, steeringForceLimit);
         }
 
