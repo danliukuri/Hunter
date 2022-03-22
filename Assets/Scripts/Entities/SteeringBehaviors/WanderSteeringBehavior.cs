@@ -33,7 +33,8 @@ namespace Entities.SteeringBehaviors
             //Debug.DrawLine(transform.position, futurePosition, Color.magenta); // Circle center vector
             //Debug.DrawLine(transform.position, futurePosition + displacement, Color.blue); // Wander force vector
 
-            return (futurePosition + displacement - transform.position).normalized * steeringMover.VelocityLimit;
+            Vector3 desiredVelocity = futurePosition + displacement - transform.position;
+            return steeringMover.VelocityLimit * velocityMultiplier * desiredVelocity.normalized;
         }
         #endregion
     }

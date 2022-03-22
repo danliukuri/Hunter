@@ -6,12 +6,8 @@ namespace Entities.SteeringBehaviors
     [RequireComponent(typeof(SteeringMover))]
     public abstract class DesiredVelocityProvider : MonoBehaviour
     {
-        #region Properties
-        public float Weight => weight;
-        #endregion
-
         #region Fields
-        [SerializeField, Range(0f, 10f)] float weight = 1f;
+        [SerializeField, Range(0f, 10f)] protected float velocityMultiplier = 1f;
 
         protected SteeringMover steeringMover;
         #endregion
